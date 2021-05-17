@@ -13,11 +13,31 @@
   margin: 10px auto;
   
 }
-
+.hide{
+  display: none;
+}
 .iblock{
   display: inline-block;
   width: 100%;
   text-align:start ;
 }
 
+.success{
+  background-color: green;
+}
+
+.toohigh{
+  background-color: red;
+}
+.toolow{
+  background-color: royalblue;
+}
+.gameover{
+  background-color: yellow;
+}
+.newgame{
+  color: white;
+  display: block;
+  background-color: rgb(64, 126, 220);
+}
 
