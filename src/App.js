@@ -1,45 +1,44 @@
 
 import './App.css';
-import React,{useEffect,useState} from 'react';
-function App() {
+import React,{useState} from 'react';
+let IsTooLow = false;
+let IsTooHigh = false;
+let Success = false;
+let Gameover = false;
+let NewGame= false;
+let randomNumber=Math.floor(Math.random()*11);
+let attempsNumber=10;
+const App =()=> {
 const [smbtNumber,setNumber]= useState("");
-const [randomNumber,setRandomNumber]= useState(Math.floor(Math.random()*11));
 const [previousGuess,setPreviousGuess]= useState("");
-const [attempsNumber,setAttempsNumber]= useState(10);
-const [isTooLow,setIsTooLow]= useState(false);
-const [isTooHigh,setIsTooHigh]= useState(false);
-const [success,setSuccess]= useState(false);
-const [gameover,setGameover]= useState(false);
-const [newGame,setNewGame]= useState(false);
+//const [attempsNumber,setAttempsNumber]= useState(10);
 
-useEffect(()=>{
 
-  //
 
-},[])
 
 const guess =(e)=>{
   e.preventDefault(); //preventing form to submit
-  setIsTooLow(false);
-  setIsTooHigh(false);
-  setSuccess(false);
-  setGameover(false);
-  setNewGame(false);
+  IsTooLow=false;
+  IsTooHigh=false;
+  Success=false;
+ Gameover=false;
+ NewGame=false;
   
+
 
 const number= parseInt(smbtNumber);
 if(number<randomNumber)
 {
-  setIsTooLow(true);
+  IsTooLow=true;
 }
 if(number >randomNumber)
 {
-  setIsTooHigh(true);
+  IsTooHigh=true;
 }
 if(number ===randomNumber)
 {
-  setSuccess(true);
-  setNewGame(true);
+  Success=true;
+  NewGame=true;
 }
 
 
@@ -49,11 +48,11 @@ setPreviousGuess(guess)
 var attemps=attempsNumber-1;
 if(attemps===0)
 {
-  setGameover(true)
-  setNewGame(true);
+  Gameover=true;
+  NewGame=true;
 }
 
-setAttempsNumber(attemps);
+attempsNumber=attemps;
 
 
 
@@ -70,15 +69,16 @@ const clearNumber =()=>{
 }
 
 const reset =() =>{
-  setAttempsNumber(10);
+  attempsNumber=10;
   setNumber("");
-  setIsTooLow(false);
-  setIsTooHigh(false);
-  setSuccess(false);
-  setGameover(false);
-  setNewGame(false);
-  let rndNumber=Math.floor(Math.random()*11);
-  setRandomNumber(rndNumber);
+  setPreviousGuess("");
+  IsTooLow=false;
+  IsTooHigh=false;
+  Success=false;
+  Gameover=false;
+  NewGame=false;
+  randomNumber=Math.floor(Math.random()*11);
+ 
   
 }
 
@@ -91,9 +91,9 @@ const reset =() =>{
       <label htmlFor="gmNumber " className="iblock">Enter a number</label>
       
       <input type="number"  id="gmNumber" name="gmNumber" className="iblock" value={smbtNumber} onChange={changeNumber}/>
-      <div> <input type="button" id="sbmtNumber" name="sbmtNumber" value="Submit number"  onClick={guess}  disabled={newGame?true:false} />
-      <button onClick={clearNumber} disabled={newGame?true:false}>Clear</button>
-      <button onClick={reset}  disabled={newGame?true:false}>Reset</button>
+      <div> <input type="button" id="sbmtNumber" name="sbmtNumber" value="Submit number"  onClick={guess}  disabled={NewGame?true:false} />
+      <button onClick={clearNumber} disabled={NewGame?true:false}>Clear</button>
+      <button onClick={reset}  disabled={NewGame?true:false}>Reset</button>
      </div>
      <hr/>
      <div>
@@ -102,19 +102,19 @@ const reset =() =>{
      <div className={attempsNumber!==10?"":"hide"}>
        Previous guesses: <span>{previousGuess}</span>
      </div>
-     <div className={isTooLow?"toolow":"hide"}>
+     <div className={IsTooLow?"toolow":"hide"}>
       Upsss. Last guess was too low
      </div>
-     <div className={isTooHigh?"toohigh":"hide"}>
+     <div className={IsTooHigh?"toohigh":"hide"}>
       Upsss. Last guess was too high
      </div>
-     <div className={success?"success":"hide"}>
+     <div className={Success?"success":"hide"}>
      Congratulations! You got it right!
      </div>
-     <div className={gameover?"gameover":"hide"}>
+     <div className={Gameover?"gameover":"hide"}>
      GAME OVER!!
      </div>
-     <button onClick={reset} className={newGame?"newgame":"hide"}>Start new game</button>
+     <button onClick={reset} className={NewGame?"newgame":"hide"}>Start new game</button>
 
 
       </from>
