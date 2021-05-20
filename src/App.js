@@ -96,10 +96,10 @@ const reset =() =>{
       <button className="buttons" onClick={reset}  disabled={NewGame?true:false}>Reset</button>
      </div>
      <hr/>
-     <div>
+     <div className="attempts">
        Remaining attemps: <span>{attempsNumber}</span>
      </div>
-     <div className={attempsNumber!==10?"":"hide"}>
+     <div className={attempsNumber!==10?"guesses":"hide"}>
        Previous guesses: <span>{previousGuess}</span>
      </div>
      <div className={IsTooLow?"toolow":"hide"}>
