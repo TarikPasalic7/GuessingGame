@@ -90,10 +90,10 @@ const reset =() =>{
 
       <label htmlFor="gmNumber " className="iblock">Enter a number</label>
       
-      <input type="number"  id="gmNumber" name="gmNumber" className="iblock" value={smbtNumber} onChange={changeNumber}/>
-      <div> <input type="button" id="sbmtNumber" name="sbmtNumber" value="Submit number"  onClick={guess}  disabled={NewGame?true:false} />
-      <button onClick={clearNumber} disabled={NewGame?true:false}>Clear</button>
-      <button onClick={reset}  disabled={NewGame?true:false}>Reset</button>
+      <input type="number"  id="gmNumber" name="gmNumber" className="iblock" required value={smbtNumber} onChange={changeNumber} />
+      <div > <input className="buttons" type="button" id="sbmtNumber" name="sbmtNumber" value="Submit number"  onClick={guess}  disabled={NewGame?true:false} />
+      <button className="buttons" onClick={clearNumber} disabled={NewGame?true:false}>Clear</button>
+      <button className="buttons" onClick={reset}  disabled={NewGame?true:false}>Reset</button>
      </div>
      <hr/>
      <div>
